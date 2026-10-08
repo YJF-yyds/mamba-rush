@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+    <meta name="theme-color" content="#080b12" />
+    <meta name="description" content="第一视角手机跑酷游戏：滑动躲避障碍，创建你的专属地图。" />
+    <title>曼巴疾跑 · MAMBA RUSH</title>
+    <link rel="stylesheet" href="/style.css" />
+  </head>
+  <body>
+    <div id="app">
+      <canvas id="game"></canvas>
+      <div class="grain"></div>
+
+      <header class="hud hidden" id="hud">
+        <div class="brand"><span class="brand-dot"></span><b>MAMBA</b> RUSH</div>
+        <div class="stats">
+          <div><small>距离</small><strong id="distance">0000</strong><span>m</span></div>
+          <div><small>能量</small><strong id="coins">00</strong><span>⚡</span></div>
+        </div>
+        <button class="icon-btn" id="pauseBtn" aria-label="暂停">Ⅱ</button>
+      </header>
+
+      <section id="landing" class="landing">
+        <div class="eyebrow"><span></span> ORIGINAL MOBILE RUNNER</div>
+        <h1>曼巴<br><em>疾跑</em></h1>
+        <p>冲进失控的城市，用你的节奏撕开道路。</p>
+        <div class="hero-wrap">
+          <div class="orbit orbit-one"></div><div class="orbit orbit-two"></div>
+          <div class="hero-glow"></div>
+          <img src="./assets/runner-cutout.png" class="hero" alt="视频中的跑酷人物" />
+          <div class="speed-mark">180°<small>CAMERA ORBIT</small></div>
+        </div>
+        <div class="landing-actions">
+          <button class="primary" id="startBtn"><span>开始疾跑</span><i>↗</i></button>
+          <button class="secondary" id="editorBtn"><span class="grid-icon">⊞</span> 地图工坊</button>
+        </div>
+        <div class="gesture-tip"><span>↑ 跳跃</span><span>↓ 滑铲</span><span>← → 变道</span></div>
+      </section>
+
+      <div id="countdown" class="countdown"></div>
+      <div id="toast" class="toast"></div>
+
+      <button id="runnerPeek" class="runner-peek hidden" aria-label="长按查看人物正面跑姿">
+        <img src="./assets/runner-cutout.png" alt="人物头像" />
+        <span>长按<br>看跑姿</span>
+      </button>
+      <div id="peekView" class="peek-view" aria-hidden="true">
+        <div class="peek-card">
+          <div class="rec"><i></i> LIVE · FRONT VIEW</div>
+          <video id="runnerVideo" src="./assets/runner-web.mp4" muted loop playsinline preload="auto"></video>
+          <div class="scanline"></div>
+          <p>松开返回第一视角</p>
+        </div>
+      </div>
+
+      <section id="editor" class="panel" aria-hidden="true">
+        <div class="panel-head">
+          <div><small>LEVEL BUILDER / 关卡编辑器</small><h2>地图工坊</h2></div>
+          <button id="closeEditor" class="close">×</button>
+        </div>
+        <p class="editor-help">点击格子循环放置：<b>路障</b> → <b>矮墙</b> → <b>能量</b> → 空。跑道从下向上前进。</p>
+        <div class="legend"><span><i class="barrier"></i>路障 · 跳跃</span><span><i class="wall"></i>矮墙 · 滑铲</span><span><i class="energy"></i>能量</span></div>
+        <div class="map-frame"><div class="road-labels"><span>左</span><span>中</span><span>右</span></div><div id="mapGrid" class="map-grid"></div></div>
+        <div class="panel-actions">
+          <button id="randomMap">随机生成</button><button id="clearMap">清空</button><button id="saveMap" class="save">保存并开跑 ↗</button>
+        </div>
+      </section>
+
+      <section id="pausePanel" class="pause-panel">
+        <small>RUN PAUSED</small><h2>暂停</h2>
+        <button id="resumeBtn" class="primary">继续疾跑</button><button id="homeBtn" class="secondary">返回首页</button>
+      </section>
+
+      <section id="gameOver" class="game-over">
+        <small>RUN COMPLETE</small><h2>撞上了！</h2>
+        <div class="result"><div><span id="finalDistance">0</span><small>米</small></div><div><span id="finalCoins">0</span><small>能量</small></div></div>
+        <button id="retryBtn" class="primary">再跑一次 ↗</button><button id="editAgain" class="secondary">编辑地图</button>
+      </section>
+
+      <audio id="bgm" src="./assets/bgm.m4a" loop preload="auto"></audio>
+    </div>
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>
